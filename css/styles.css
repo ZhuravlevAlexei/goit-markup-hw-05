@@ -25,6 +25,7 @@
 
   /* Animation */
   --anim-main: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* --anim-main: 2000ms cubic-bezier(0.4, 0, 0.2, 1); */
 }
 
 body {
@@ -136,7 +137,6 @@ address {
 }
 
 .header-logo {
-  /* на макеті 93px */
   padding-right: 93px;
   transition: color var(--anim-main);
 }
@@ -173,8 +173,7 @@ address {
 
 .header-cont-icon {
   margin-right: 10px;
-
-  transition: fill var(--anim-main);
+  fill: currentColor;
 }
 
 .header-nav-link,
@@ -215,7 +214,7 @@ address {
   display: flex;
   align-items: center;
   color: var(--main-txt-color);
-  fill: var(--main-txt-color);
+  transition: color var(--anim-main);
 }
 
 .header-nav-link:hover::after {
@@ -623,8 +622,11 @@ address {
 .rbtn:focus {
   background-color: var(--main-accent-color);
   color: var(--light-txt-color);
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  transition: background-color var(--anim-main), color var(--anim-main), filter var(--anim-main);
+
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
+    0px 2px 2px rgba(0, 0, 0, 0.12);
+
+  transition: background-color var(--anim-main), color var(--anim-main), box-shadow var(--anim-main);
 }
 
 /* поточна кнопка */
@@ -633,14 +635,13 @@ address {
   color: var(--light-txt-color);
 }
 
-.sec-prg-item:hover {
+.sec-prg-link:hover {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
   transition: box-shadow var(--anim-main);
 }
 
-/* .sec-prg-item:hover .prg-thumb::before { */
-.sec-prg-item:hover .prg-overlay {
+.sec-prg-link:hover .prg-over-text {
   transform: translateY(0);
   transition: transform var(--anim-main);
 }
@@ -650,19 +651,10 @@ address {
   overflow: hidden;
 }
 
-/* .prg-thumb::before { */
-.prg-overlay {
-  /* content: ''; */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 1;
-  background: rgba(33, 150, 243, 0.9);
-  transform: translateY(100%);
-
-  transition: transform var(--anim-main);
+.prg-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 .prg-over-text {
@@ -671,7 +663,16 @@ address {
   font-size: 18px;
   line-height: calc(28 / 18);
 
-  /* font-weight: 500; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  background: rgba(33, 150, 243, 0.9);
+  transform: translateY(101%);
+
+  transition: transform var(--anim-main);
 }
 
 .project-name {
@@ -686,6 +687,7 @@ address {
 .project-text {
   font-size: 16px;
   line-height: calc(30 / 16);
+  color: var(--main-txt-color);
 }
 
 .sec-prg-list {
@@ -696,9 +698,16 @@ address {
 
 .sec-prg-item {
   /* width: 370px; */
+  display: flex;
+
   flex-basis: calc((100% - 30px * var(--number-of-gaps-two)) / var(--number-of-items-three));
+}
+
+.sec-prg-link {
+  text-decoration: none;
   border: 1px solid #eeeeee;
-  transition: box-shadow var(--anim-main);
+  border-radius: 4px;
+  transition: border-color var(--anim-main), fill var(--anim-main);
 }
 
 .sec-prg-list .project-name {
